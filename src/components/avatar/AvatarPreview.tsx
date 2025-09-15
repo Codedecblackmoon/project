@@ -136,6 +136,18 @@ const AvatarPreview = ({ avatar }: AvatarPreviewProps) => {
           />
         )}
         
+        {/* Clothes */}
+        {avatar.clothes && (
+          <img
+            src={`/avatars/clothes/${avatar.clothes}.png`}
+            alt="Avatar clothes"
+            className="absolute inset-0 w-full h-full object-contain z-20"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        )}
+        
         {/* Hair */}
         {avatar.hair && (
           <img
@@ -172,6 +184,7 @@ const AvatarPreview = ({ avatar }: AvatarPreviewProps) => {
           />
         )}
         
+       
         {/* Accessories (hats, glasses, etc.) - Always on top */}
         {avatar.accessories && (
           <img
