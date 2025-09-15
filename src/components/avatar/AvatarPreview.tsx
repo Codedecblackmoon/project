@@ -129,14 +129,14 @@ const AvatarPreview = ({ avatar }: AvatarPreviewProps) => {
           <img
             src={`/avatars/clothes/${avatar.clothes}.png`}
             alt="Avatar clothes"
-            className="absolute inset-0 w-full h-full object-contain z-20"
+            className="absolute inset-0 w-full h-full object-contain z-40"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}
           />
         )}
         
-        {/* Clothes */}
+        {/* Clothes
         {avatar.clothes && (
           <img
             src={`/avatars/clothes/${avatar.clothes}.png`}
@@ -146,7 +146,7 @@ const AvatarPreview = ({ avatar }: AvatarPreviewProps) => {
               e.currentTarget.style.display = 'none';
             }}
           />
-        )}
+        )} */}
         
         {/* Hair */}
         {avatar.hair && (
@@ -165,7 +165,7 @@ const AvatarPreview = ({ avatar }: AvatarPreviewProps) => {
           <img
             src={`/avatars/eyes/${avatar.eyes}.png`}
             alt="Avatar eyes"
-            className="absolute inset-0 w-full h-full object-contain z-40"
+            className="absolute inset-0 w-full h-full object-contain z-20"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}

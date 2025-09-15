@@ -9,12 +9,12 @@ interface ItemGridProps {
 
 // Define available items for each category
 const categoryItems: Record<AvatarCategory, string[]> = {
-  accessories: ['hat-2', 'hat-1', 'hat-3'],
-  base: ['base-1', 'base-2', 'base-3'],
+  accessories: ['hat-2', 'hat-1', 'hat-3', 'hat-4'],
+  base: ['base-1', 'base-2', 'base-3', 'base-4', 'base-5'],
   hair: ['hair-1', 'hair-2'],
-  eyes: ['eyes-1', 'eyes-2', 'eyes-3'],
+  eyes: ['eyes-1', 'eyes-2', 'eyes-3', 'eyes-4', 'eyes-5'],
   mouth: ['mouth-1', 'mouth-2'],
-  clothes: ['clothes-1', 'clothes-2'],
+  clothes: ['clothes-3', 'clothes-2', 'clothes-4', 'clothes-5', 'clothes-6'],
 };
 
 const ItemGrid = ({ category, selectedItem, onItemSelect }: ItemGridProps) => {
