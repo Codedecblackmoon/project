@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import logo from "./logos/logo o.png"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -53,30 +54,30 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-primary-dark flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md mx-auto">
+    <div className="min-h-screen bg-[#f9fafb] flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md mx-auto pt-">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="w-18 h-18 rounded-full p-2 mx-auto">
+        <div className="text-center ">
+          {/* <div className="w-18 h-18 rounded-full mx-auto flex flex-col items-center justify-center">
             <img
-              src="/uploads/bulabooksLogo.png"
+              src={logo}
               alt="BulaBooks Logo"
-              className="w-full h-full object-contain"
+              className="w-40 h-40 object-contain"
             />
-          </div>
-          <h1 className="text-2xl font-bold text-white mb-2">
+          </div> */}
+          <h1 className="text-2xl font-bold text-[#111827] mb-1">
             Login to your Account
           </h1>
-          <p className="text-white/80 text-sm">Welcome back to BulaBooks!</p>
+          <p className="text-[#111827]/80 text-sm mb-5">Welcome back to BulaBooks!</p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+        <div className="shadow-xl inset-shadow-x1 inset-shadow-indigo-500 shadow-[#000000]-500/60 bg-[#ffffff] rounded-t-lg p-6 border border-[#f9fafb]/20">
           <form onSubmit={handleLogin} className="space-y-6">
             {/* Google Sign-in */}
             <Button
               type="button"
               onClick={handleGoogleLogin}
-              className="w-full h-12 bg-black text-white rounded-lg hover:bg-black/90 font-semibold flex items-center justify-center space-x-2"
+              className="w-full h-12 bg-black text-[#f9fafb] rounded-xs hover:bg-[#f96d00]/90 font-semibold flex items-center justify-center space-x-2"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -104,7 +105,7 @@ const Login = () => {
                 <div className="w-full border-t border-white/30"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-transparent text-white/70">or</span>
+                <span className="px-2 bg-transparent text-[#111827]/70">or</span>
               </div>
             </div>
 
@@ -115,7 +116,7 @@ const Login = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
+                className=" inset-shadow-x1 inset-shadow-indigo-500 h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
                 placeholder="Email"
                 required
               />
@@ -124,7 +125,7 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
                 placeholder="Password"
                 required
               />
@@ -139,9 +140,9 @@ const Login = () => {
                   onCheckedChange={(checked) =>
                     setRememberMe(checked as boolean)
                   }
-                  className="border-white/30 data-[state=checked]:bg-white data-[state=checked]:text-primary"
+                  className="border-[#111827]/30 data-[state=checked]:bg-[#111827] data-[state=checked]:text-[#f9fafb]"
                 />
-                <Label htmlFor="remember" className="text-white/80">
+                <Label htmlFor="remember" className="text-[#111827]/80">
                   Remember Me
                 </Label>
               </div>
@@ -149,7 +150,7 @@ const Login = () => {
               <Button
                 type="button"
                 variant="link"
-                className="text-white/80 text-sm p-0 h-auto"
+                className="text-[#111827]/80 text-sm p-0 h-auto"
                 onClick={() => navigate("/forgot-password")}
               >
                 Forgot Password?
@@ -160,7 +161,7 @@ const Login = () => {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 bg-black text-white rounded-lg hover:bg-black/90 font-semibold"
+              className=" w-full h-12 bg-black text-[#f9fafb] rounded-xs hover:bg-[#f96d00]/90 font-semibold"
             >
               {loading ? "Logging in..." : "Log In"}
             </Button>
@@ -171,8 +172,8 @@ const Login = () => {
         <div className="text-center mt-6">
           <Button
             onClick={() => navigate("/")}
-            variant="link"
-            className="text-white/80 hover:text-white"
+        
+            className="text-[#111827]/80 bg-transparent hover:text-[#f9fafb] "
           >
             ← Back to Welcome
           </Button>

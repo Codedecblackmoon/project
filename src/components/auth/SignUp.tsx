@@ -119,100 +119,107 @@ const handleSignup = async () => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-primary-dark flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md mx-auto text-center space-y-6">
+    <div className="min-h-screen bg-[#f9fafb] flex flex-col items-center justify-center p-4">
+      <div className="w-800 max-w-md mx-auto text-center space-y-6">
         {/* Logo */}
-        <div className="w-20 h-20 rounded-full p-4 mx-auto">
+        {/* <div className="w-20 h-20 rounded-full p-4 mx-auto">
           <img
             src="/uploads/bulabooksLogo.png"
             alt="BulaBooks Logo"
             className="w-full h-full object-contain"
           />
-        </div>
+        </div> */}
 
-        <h1 className="text-2xl font-bold text-white">Sign Up</h1>
-        <p className="text-white/80 text-sm">Create your account to get started</p>
+        <h1 className="text-2xl font-bold text-[#111827] mb-0">Sign Up</h1>
+        <p className="text-[#111827]/80 ">Create your account to get started</p>
 
         {/* Signup Form */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 space-y-4 mt-4">
+        <div className="shadow-xl inset-shadow-x1 inset-shadow-indigo-500 shadow-[#000000]-500/60 bg-[#ffffff] rounded-t-lg p-6 border border-[#f9fafb]/20">
           {/* Full Name */}
-          <div>
-            <Label htmlFor="name" className="text-white/80">Full Name</Label>
-            <Input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Your Name"
-              className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
-              required
-            />
-          </div>
 
-          {/* Email */}
-          <div>
-            <Label htmlFor="email" className="text-white/80">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
-              required
-            />
-          </div>
+          {/* jjjj */}
+          <div className="flex flex-row items-center justify-center gap-5">
+            <div>
+              <Label htmlFor="name" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your Name"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
+                required
+              />
+            </div>
 
-          {/* Password */}
-          <div className="relative">
-            <Label htmlFor="password" className="text-white/80">Password</Label>
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg pr-10"
-              required
-            />
-            <button
-              type="button"
-              className="absolute right-3 top-9 text-white/70"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            {/* Email */}
+            <div>
+              <Label htmlFor="email" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
+                required
+              />
+            </div>
           </div>
+          
+          <div className="flex flex-row items-center justify-center gap-5">
+            {/* Password */}
+            <div className="relative">
+              <Label htmlFor="password" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Password</Label>
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
+                required
+              />
+              <button
+                type="button"
+                className="absolute right-3 bottom-3 text-[#111827]/70"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
 
-          {/* Confirm Password */}
-          <div className="relative">
-            <Label htmlFor="confirmPassword" className="text-white/80">Confirm Password</Label>
-            <Input
-              id="confirmPassword"
-              type={showConfirmPassword ? "text" : "password"}
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
-              className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg pr-10"
-              required
-            />
-            <button
-              type="button"
-              className="absolute right-3 top-9 text-white/70"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
-              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            {/* Confirm Password */}
+            <div className="relative">
+              <Label htmlFor="confirmPassword" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Confirm Password</Label>
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm Password"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
+                required
+              />
+              <button
+                type="button"
+                className="absolute right-3 bottom-3 text-[#111827]/70"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
+          
 
           {/* Role */}
           <div>
-            <Label htmlFor="role" className="text-white/80">I am a</Label>
+            <Label htmlFor="role" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">I am a</Label>
             <select
               id="role"
               value={role}
               onChange={(e) => setRole(e.target.value as "student" | "teacher")}
-              className="h-12 w-full bg-white/20 border-white/30 text-white rounded-lg px-3"
+              className="h-12 w-full bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
             >
               <option value="student">Learner</option>
               <option value="teacher">Teacher</option>
@@ -222,12 +229,12 @@ const handleSignup = async () => {
           {/* Grade (only learners) */}
           {role === "student" && (
             <div>
-              <Label htmlFor="grade" className="text-white/80">Grade</Label>
+              <Label htmlFor="grade" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Grade</Label>
               <select
                 id="grade"
                 value={grade}
                 onChange={(e) => setGrade(e.target.value)}
-                className="h-12 w-full bg-white/20 border-white/30 text-white rounded-lg px-3"
+                className="h-12 w-full bg-white/20 border-[#111827]/60 text-[#111827]/60 rounded-sm px-1"
               >
                 <option value="3">Grade 3</option>
                 <option value="4">Grade 4</option>
@@ -241,7 +248,7 @@ const handleSignup = async () => {
           {/* School (only teachers) */}
           {role === "teacher" && (
             <div>
-              <Label htmlFor="school" className="text-white/80">School</Label>
+              <Label htmlFor="school" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">School</Label>
               <Input
                 id="school"
                 type="text"
@@ -256,26 +263,26 @@ const handleSignup = async () => {
           {/* Parent Email (optional, only learners) */}
           {role === "student" && (
             <div>
-              <Label htmlFor="parentEmail" className="text-white/80">Parent/Guardian Email (optional)</Label>
+              <Label htmlFor="parentEmail" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Parent/Guardian Email (optional)</Label>
               <Input
                 id="parentEmail"
                 type="email"
                 value={parentEmail}
                 onChange={(e) => setParentEmail(e.target.value)}
                 placeholder="Parent Email"
-                className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
               />
             </div>
           )}
 
           {/* Language */}
-          <div>
-            <Label htmlFor="language" className="text-white/80">Preferred Language</Label>
+          <div className="pb-10">
+            <Label htmlFor="language" className="block text-left text-[#111827]/80 font-bold pb-2 pt-5">Preferred Language</Label>
             <select
               id="language"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              className="h-12 w-full bg-white/20 border-white/30 text-white rounded-lg px-3"
+              className="h-12 w-full bg-white/20 border-[#111827]/60 text-[#111827]/60 rounded-sm px-1"
             >
               <option value="english">English</option>
               <option value="zulu">isiZulu</option>
@@ -300,7 +307,7 @@ const handleSignup = async () => {
               onChange={(e) => setTermsAccepted(e.target.checked)}
               className="h-4 w-4"
             />
-            <Label htmlFor="terms" className="text-white/80 text-sm">
+            <Label htmlFor="terms" className="text-[#111827]/80 text-sm pb-2">
               I agree to the <a href="/terms" className="underline">Terms of Service</a> and <a href="/privacy" className="underline">Privacy Policy</a>
             </Label>
           </div>
@@ -327,15 +334,15 @@ const handleSignup = async () => {
 
           {/* Divider */}
           <div className="flex items-center my-4">
-            <div className="flex-grow border-t border-white/30"></div>
-            <span className="px-2 text-white/70 text-sm">or</span>
-            <div className="flex-grow border-t border-white/30"></div>
+            <div className="flex-grow border-t border-[#111827]/30"></div>
+            <span className="px-2 text-[#111827]/70 text-sm">or</span>
+            <div className="flex-grow border-t border-[#111827]/30"></div>
           </div>
 
           {/* Google Signup */}
           <Button
             onClick={handleGoogleSignup}
-            className="w-full h-12 bg-red-500 text-white rounded-lg hover:bg-red-600 font-semibold"
+            className="w-full h-12 bg-[#f96d00] text-white rounded-lg hover:bg-[#ff8629] font-semibold"
           >
             Sign Up with Google
           </Button>
@@ -346,7 +353,7 @@ const handleSignup = async () => {
           <Button
             onClick={() => navigate("/")}
             variant="link"
-            className="text-white/80 hover:text-white"
+            className="text-[#111827]/80 hover:text-[#ff8629]"
           >
             ← Back to Welcome
           </Button>

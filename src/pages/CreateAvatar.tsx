@@ -60,7 +60,7 @@ const CreateAvatar = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col">
+    <div className="min-h-screen bg-[#f96d00] flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-4 text-white">
         <Button
@@ -71,52 +71,64 @@ const CreateAvatar = () => {
         >
           <ArrowLeft className="h-6 w-6" />
         </Button>
-        <h1 className="text-lg font-semibold">My profile</h1>
+        <h1 className="text-lg font-extrabold ">My profile</h1>
         <div className="w-10" /> {/* Spacer */}
       </div>
 
       {/* Avatar Preview Section */}
       <div className="flex-1 flex flex-col items-center px-4">
-        <AvatarPreview avatar={avatar} />
+        <div className="flex flex-row-reverse items-center justify-center gap-9">
+          <div>
+              <div className="pl-11 items-center justify-center">
+                <AvatarPreview avatar={avatar} />
+              </div>
+
+            
+              <div className="text-center text-white mt-4 mb-6">
+                <h2 className="text-2xl font-bold">{nickname}</h2>
+                <p className="text-white/80">Level {level}</p>
+              </div>
+
+              {/* Category Selector */}
+              <CategorySelector
+                categories={categories}
+                activeCategory={activeCategory}
+                onCategoryChange={setActiveCategory}
+              />
+            </div>
+
+            <div>
+              {/* Nickname Input */}
+              <div className="w-full max-w-md mb-6">
+                <Input
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                  placeholder="What can we call you?"
+                  className=" h-12 text-center text-lg font-medium"
+                />
+              </div>
+
+              {/* Item Selection Grid */}
+              <div className="w-full max-w-md mt-6 mb-6">
+                <ItemGrid
+                  category={activeCategory}
+                  selectedItem={avatar[activeCategory]}
+                  onItemSelect={(item) => handleItemSelect(activeCategory, item)}
+                />
+              </div>
+            </div>
+        </div>
+
+        <div className="pt-8 w-full flex flex-col items-center ">
+          {/* Save Button */}
+          <Button
+            onClick={handleFinish}
+            className="w-full max-w-md h-12 bg-black text-white font-semibold rounded-2xl hover:bg-black/90 mb-8"
+          >
+            Save & Start Learning!
+          </Button>
+        </div>
         
-        <div className="text-center text-white mt-4 mb-6">
-          <h2 className="text-2xl font-bold">{nickname}</h2>
-          <p className="text-white/80">Level {level}</p>
-        </div>
-
-        {/* Category Selector */}
-        <CategorySelector
-          categories={categories}
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-        />
-
-        {/* Item Selection Grid */}
-        <div className="w-full max-w-md mt-6 mb-6">
-          <ItemGrid
-            category={activeCategory}
-            selectedItem={avatar[activeCategory]}
-            onItemSelect={(item) => handleItemSelect(activeCategory, item)}
-          />
-        </div>
-
-        {/* Nickname Input */}
-        <div className="w-full max-w-md mb-6">
-          <Input
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            placeholder="What can we call you?"
-            className="bg-white/90 border-0 rounded-2xl h-12 text-center text-lg font-medium"
-          />
-        </div>
-
-        {/* Save Button */}
-        <Button
-          onClick={handleFinish}
-          className="w-full max-w-md h-12 bg-black text-white font-semibold rounded-2xl hover:bg-black/90 mb-8"
-        >
-          Save & Start Learning!
-        </Button>
       </div>
     </div>
   );

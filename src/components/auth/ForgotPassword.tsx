@@ -28,15 +28,15 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-primary-dark p-4">
-      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 w-full max-w-md text-center">
-        <h1 className="text-2xl font-bold text-white">Forgot Password</h1>
-        <p className="text-white/80 text-sm mt-2">
+      <div className="bg-ds/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 w-full max-w-md text-center">
+        <h1 className="text-2xl font-bold text-[#f9fafb]">Forgot Password</h1>
+        <p className="text-[#f9fafb]/80 text-sm mt-2">
           Enter your email and we’ll send you a link to reset your password.
         </p>
 
         <div className="mt-6 space-y-4">
           <div>
-            <Label htmlFor="email" className="text-white/80">
+            <Label htmlFor="email" className="text-[#f9fafb]/80">
               Email
             </Label>
             <Input
@@ -45,26 +45,26 @@ const ForgotPassword = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
+              className="h-12 bg-white/20 border-white/30 text-[#f9fafb] placeholder:text-white/60 rounded-lg"
             />
           </div>
 
           <Button
             onClick={handleForgotPassword}
             disabled={!email || loading}
-            className="w-full h-12 bg-black text-white rounded-lg hover:bg-black/90 font-semibold"
+            className="w-full h-12 bg-[#111827] text-[#f9fafb] rounded-lg hover:bg-[#111827]/90 font-semibold"
           >
             {loading ? "Sending..." : "Send Reset Link"}
           </Button>
 
           {message && (
-            <p className="mt-3 text-sm text-white/90">{message}</p>
+            <p className="mt-3 text-sm text-[#f9fafb]/90">{message}</p>
           )}
 
           <div className="mt-4">
             <Button
               variant="link"
-              className="text-white/80 hover:text-white"
+              className="text-[#f9fafb]/80 hover:text-[#f9fafb]"
               onClick={() => (window.location.href = "/login")}
             >
               ← Back to Login
