@@ -14,7 +14,7 @@ const categoryItems: Record<AvatarCategory, string[]> = {
   hair: ['hair-1', 'hair-2'],
   eyes: ['eyes-1', 'eyes-2', 'eyes-3', 'eyes-4', 'eyes-5'],
   mouth: ['mouth-1', 'mouth-2'],
-  clothes: ['clothes-3', 'clothes-2', 'clothes-4', 'clothes-5', 'clothes-6'],
+  clothes: ['clothes-3', 'clothes-2', 'clothes-4', 'clothes-5', 'clothes-1'],
 };
 
 const ItemGrid = ({ category, selectedItem, onItemSelect }: ItemGridProps) => {
