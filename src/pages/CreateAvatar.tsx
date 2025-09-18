@@ -51,6 +51,8 @@ const CreateAvatar = () => {
 
   const handleFinish = () => {
     localStorage.setItem("studentName", nickname);
+    localStorage.setItem("studentEmail", ""); // Initialize empty email
+    localStorage.setItem("studentGrade", ""); // Initialize empty grade
     localStorage.setItem("avatar", JSON.stringify(avatar));
     navigate("/student-dashboard");
   };

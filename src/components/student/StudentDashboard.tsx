@@ -4,17 +4,36 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import AvatarDisplay from "@/components/avatar/AvatarDisplay";
+import { AvatarState } from "@/pages/CreateAvatar";
 
 const StudentDashboard = () => {
   const [studentName, setStudentName] = useState("Student");
   const [grade, setGrade] = useState<string | null>(null);
+  const [avatar, setAvatar] = useState<AvatarState>({
+    base: 'base-1',
+    hair: 'hair-1',
+    eyes: 'eyes-1',
+    mouth: 'mouth-1',
+    clothes: 'clothes-1',
+    accessories: ''
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
     const savedName = localStorage.getItem("studentName");
     const savedGrade = localStorage.getItem("studentGrade");
+    const savedAvatar = localStorage.getItem("avatar");
+    
     if (savedName) setStudentName(savedName);
     if (savedGrade) setGrade(savedGrade);
+    if (savedAvatar) {
+      try {
+        setAvatar(JSON.parse(savedAvatar));
+      } catch (error) {
+        console.error("Error parsing saved avatar:", error);
+      }
+    }
   }, []);
 
   // Function to handle story reading
@@ -38,12 +57,11 @@ const StudentDashboard = () => {
       <header className="bg-gradient-to-r from-orange-600 to-orange-500 text-white p-4 shadow-md">
         <div className="flex justify-between items-center max-w-6xl mx-auto">
           <h1 className="text-lg font-bold">BulaBooks 📚</h1>
-          <div 
-            className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-lg shadow-md cursor-pointer hover:scale-110 transition-transform"
+          <AvatarDisplay 
+            avatar={avatar}
+            showTopHalf={true}
             onClick={() => navigate("/profile")}
-          >
-            👦
-          </div>{/* avatar */}
+          />
         </div>
       </header>
 

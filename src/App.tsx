@@ -15,6 +15,7 @@ import StoryPage from "./components/student/StoryPage";
 import BadgesPage from "./components/student/BadgesPage";
 import ProgressPage from "./components/student/ProgressPage";
 import TeacherDashboard from "./components/teacher/TeacherDashboard";
+import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/story/:storyId" element={<StoryPage />} />
           <Route path="/badges" element={<BadgesPage />} />
           <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
