@@ -1,351 +1,256 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
-import StoryCard from "./StoryCard";
-import MiniGameCard from "./MiniGameCard";
-import { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const StudentDashboard = () => {
   const [studentName, setStudentName] = useState("Student");
   const [grade, setGrade] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedName = localStorage.getItem("studentName");
     const savedGrade = localStorage.getItem("studentGrade");
-
     if (savedName) setStudentName(savedName);
     if (savedGrade) setGrade(savedGrade);
   }, []);
 
+  // Function to handle story reading
+  const handleReadStory = (storyId: string) => {
+    navigate(`/story/${storyId}`);
+  };
+
+  // Function to handle game playing
+  const handlePlayGame = (gameId: string) => {
+    navigate(`/game/${gameId}`);
+  };
+
+  // Function to handle speaking practice
+  const handleSpeakPractice = () => {
+    navigate("/speak-practice");
+  };
+
   return (
-    <div className="min-h-screen bg-orange-50">
+    <div className="min-h-screen bg-orange-50 flex flex-col">
       {/* Header */}
-      <div className="bg-gradient-to-br from-orange-600 to-orange-700 text-white p-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-white rounded-full p-1">
-              <img
-                src="/lovable-uploads/55840e5c-afc6-4e2c-ba39-1785cb971340.png"
-                alt="BulaBooks"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="text-lg font-bold">BulaBooks</span>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-white">
-              📩 0
-            </Button>
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-              👦
-            </div>
+      <header className="bg-gradient-to-r from-orange-600 to-orange-500 text-white p-4 shadow-md">
+        <div className="flex justify-between items-center max-w-6xl mx-auto">
+          <h1 className="text-lg font-bold">BulaBooks 📚</h1>
+          <div 
+            className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-lg shadow-md cursor-pointer hover:scale-110 transition-transform"
+            onClick={() => navigate("/profile")}
+          >
+            👦
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="max-w-6xl mx-auto p-4">
-        {/* Welcome Banner */}
-        <div className="bg-gradient-to-r from-orange-400 to-orange-500 rounded-2xl p-6 mb-6 text-white">
-          <div className="flex items-center justify-between">
+      {/* Main Tabs (Read, Play, Speak, Explore) */}
+      <Tabs defaultValue="read" className="flex-1 flex flex-col">
+        <TabsList className="grid grid-cols-4 bg-white rounded-none border-b sticky top-0 z-10">
+          <TabsTrigger value="read" className="text-sm md:text-base transition-all hover:bg-orange-100 data-[state=active]:bg-orange-100 data-[state=active]:text-orange-600">📖 Read</TabsTrigger>
+          <TabsTrigger value="play" className="text-sm md:text-base transition-all hover:bg-orange-100 data-[state=active]:bg-orange-100 data-[state=active]:text-orange-600">🎮 Play</TabsTrigger>
+          <TabsTrigger value="speak" className="text-sm md:text-base transition-all hover:bg-orange-100 data-[state=active]:bg-orange-100 data-[state=active]:text-orange-600">🎤 Speak</TabsTrigger>
+          <TabsTrigger value="explore" className="text-sm md:text-base transition-all hover:bg-orange-100 data-[state=active]:bg-orange-100 data-[state=active]:text-orange-600">🌍 Explore</TabsTrigger>
+        </TabsList>
+
+        <div className="flex-1 overflow-y-auto p-4 space-y-6">
+          {/* Read Tab */}
+          <TabsContent value="read" className="space-y-6">
+            {/* Welcome Banner */}
+            <div className="bg-gradient-to-r from-orange-400 to-orange-500 rounded-2xl p-6 text-white shadow-lg flex justify-between items-center">
+              <div>
+                <h1 className="text-2xl font-bold">Hello, {studentName}!</h1>
+                <p className="opacity-90 text-sm">
+                  Ready for another story adventure
+                  {grade ? ` in Grade ${grade}?` : "?"}
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="text-sm opacity-80">Level 5</div>
+                <div className="text-lg font-bold">1,250 XP</div>
+              </div>
+            </div>
+
+            {/* Story Library */}
             <div>
-              <h1 className="text-2xl font-bold mb-1">
-                Welcome back, {studentName}!
-              </h1>
-              <p className="opacity-90">
-                Ready for another reading adventure
-                {grade ? ` in Grade ${grade}?` : "?"}
+              <h2 className="text-xl font-bold text-gray-800 mb-3">Story Library</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  {
+                    id: "too-small",
+                    title: "You're too small",
+                    cover: "/books_Upload/Too small 1.png",
+                    desc: "Mama Tau was coming home! She had been away for a long time studying...",
+                  },
+                  {
+                    id: "thokos-library",
+                    title: "Thoko's first library book",
+                    cover: "/books_Upload/Thokos library1.png",
+                    desc: "Thoko walked into the library with Gogo. She liked the smell of the new building...",
+                  },
+                  {
+                    id: "no-price",
+                    title: "There is no price for being kind",
+                    cover: "/books_Upload/No Price1.png",
+                    desc: "In a village far away, there lived a very poor boy who herded sheep to feed his family...",
+                  },
+                ].map((story) => (
+                  <Card 
+                    key={story.id} 
+                    className="flex gap-4 items-center p-3 shadow-sm rounded-xl hover:shadow-md transition-all cursor-pointer"
+                    onClick={() => handleReadStory(story.id)}
+                  >
+                    <img
+                      src={story.cover}
+                      alt={story.title}
+                      className="w-20 h-28 rounded-lg object-cover"
+                    />
+                    <CardContent className="p-0 flex-1">
+                      <h3 className="font-bold text-base">{story.title}</h3>
+                      <p className="text-xs text-gray-600">{story.desc}</p>
+                      <Button
+                        size="sm"
+                        className="mt-2 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all"
+                      >
+                        Read →
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Play Tab */}
+          <TabsContent value="play">
+            <h2 className="text-xl font-bold text-gray-800 mb-3">Mini Games</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { id: "word-puzzle", title: "Word Puzzle", icon: "🧩", color: "bg-purple-500 hover:bg-purple-600" },
+                { id: "rhyme-time", title: "Rhyme Time", icon: "🎵", color: "bg-blue-500 hover:bg-blue-600" },
+                { id: "speed-read", title: "Speed Read", icon: "⚡", color: "bg-orange-500 hover:bg-orange-600" },
+                { id: "voice-match", title: "Voice Match", icon: "🎤", color: "bg-pink-500 hover:bg-pink-600" },
+              ].map((game) => (
+                <div
+                  key={game.id}
+                  className={`rounded-xl p-4 text-white shadow-md ${game.color} flex flex-col items-center cursor-pointer transition-all hover:scale-105`}
+                  onClick={() => handlePlayGame(game.id)}
+                >
+                  <div className="text-3xl">{game.icon}</div>
+                  <h3 className="mt-2 font-bold text-center">{game.title}</h3>
+                  <Button 
+                    size="sm" 
+                    variant="secondary" 
+                    className="mt-2 rounded-full bg-white text-gray-800 hover:bg-gray-100"
+                  >
+                    Play
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* Speak Tab */}
+          <TabsContent value="speak">
+            <h2 className="text-xl font-bold text-gray-800 mb-3">Speak Practice</h2>
+            <Card className="p-6 text-center shadow-md rounded-xl hover:shadow-lg transition-all cursor-pointer" onClick={handleSpeakPractice}>
+              <div className="text-5xl mb-4">🎤</div>
+              <p className="text-sm text-gray-700 mb-4">
+                Practice your pronunciation with AI!
               </p>
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all">
+                Start Speaking
+              </Button>
+            </Card>
+            
+            <h3 className="text-lg font-bold text-gray-800 mt-6 mb-3">Recent Practices</h3>
+            <div className="grid gap-3">
+              {[
+                { word: "Elephant", score: 85 },
+                { word: "Butterfly", score: 72 },
+                { word: "Adventure", score: 90 },
+              ].map((practice, index) => (
+                <div key={index} className="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm">
+                  <span className="font-medium">{practice.word}</span>
+                  <div className="flex items-center">
+                    <span className="text-sm mr-2">{practice.score}%</span>
+                    <div className="w-16 h-2 bg-gray-200 rounded-full">
+                      <div 
+                        className={`h-2 rounded-full ${practice.score > 80 ? 'bg-green-500' : practice.score > 60 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                        style={{ width: `${practice.score}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="text-right">
-              <div className="text-sm opacity-80">Level 5</div>
-              <div className="text-lg font-bold">1,250 XP</div>
+          </TabsContent>
+
+          {/* Explore Tab */}
+          <TabsContent value="explore">
+            <h2 className="text-xl font-bold text-gray-800 mb-3">Explore Challenges</h2>
+            <div className="grid gap-4">
+              <Card className="p-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate('/challenges/daily')}>
+                <h3 className="font-bold flex items-center">Daily Challenge <span className="ml-2">🌟</span></h3>
+                <p className="text-xs text-gray-600">Read 2 stories today!</p>
+                <div className="mt-2 flex items-center">
+                  <Progress value={50} className="h-2 mr-2" />
+                  <span className="text-xs">1/2 completed</span>
+                </div>
+              </Card>
+              <Card className="p-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate('/challenges/weekly')}>
+                <h3 className="font-bold flex items-center">Weekly Quest <span className="ml-2">🚀</span></h3>
+                <p className="text-xs text-gray-600">Earn 500 XP this week.</p>
+                <div className="mt-2 flex items-center">
+                  <Progress value={75} className="h-2 mr-2" />
+                  <span className="text-xs">375/500 XP</span>
+                </div>
+              </Card>
             </div>
-          </div>
+            
+            <h3 className="text-lg font-bold text-gray-800 mt-6 mb-3">Achievements</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { title: "Bookworm", icon: "📖", earned: true },
+                { title: "Storyteller", icon: "🎭", earned: true },
+                { title: "Word Master", icon: "🔠", earned: false },
+                { title: "Speed Reader", icon: "⚡", earned: false },
+              ].map((achievement, index) => (
+                <div 
+                  key={index} 
+                  className={`p-3 rounded-lg text-center ${achievement.earned ? 'bg-yellow-100 border border-yellow-300' : 'bg-gray-100 opacity-60'}`}
+                >
+                  <div className="text-2xl mb-1">{achievement.icon}</div>
+                  <p className="text-xs font-medium">{achievement.title}</p>
+                  <span className="text-xs">{achievement.earned ? 'Earned!' : 'Locked'}</span>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
         </div>
+      </Tabs>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-6">
-            {/* Story Adventures */}
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-gray-800">
-                  Story Adventures
-                </h2>
-                <Button variant="link" className="text-orange-600">
-                  View All →
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <StoryCard
-                  title="The Brave Little Lion"
-                  image="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=300&h=200&fit=crop"
-                  status="continue"
-                  progress={65}
-                  level="Level 3"
-                />
-                <StoryCard
-                  title="Rainbow Castle Adventure"
-                  image="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop"
-                  status="new"
-                  level="Level 4"
-                />
-                <StoryCard
-                  title="Ocean Friends"
-                  image="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop"
-                  status="completed"
-                  level="Level 2"
-                />
-              </div>
-            </div>
-
-            {/* Mini Games */}
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-gray-800">Mini Games</h2>
-                <Button variant="link" className="text-orange-600">
-                  View All →
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <MiniGameCard
-                  title="Word Puzzle"
-                  icon="🧩"
-                  color="bg-purple-500"
-                  xp={50}
-                  difficulty="Easy"
-                />
-                <MiniGameCard
-                  title="Rhyme Time"
-                  icon="🎵"
-                  color="bg-blue-500"
-                  xp={75}
-                  difficulty="Medium"
-                />
-                <MiniGameCard
-                  title="Speed Read"
-                  icon="⚡"
-                  color="bg-orange-500"
-                  xp={100}
-                  difficulty="Hard"
-                />
-                <MiniGameCard
-                  title="Voice Match"
-                  icon="🎤"
-                  color="bg-pink-500"
-                  xp={60}
-                  difficulty="Easy"
-                />
-              </div>
-            </div>
-
-            {/* Co-op Adventures */}
-            <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                Co-op Adventures
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-purple-100 rounded-2xl p-4">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                      T
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800">
-                        Team Story Quest
-                      </h3>
-                      <p className="text-sm text-gray-600">
-                        Adventure with friends
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button size="sm" className="bg-purple-500 text-white">
-                      Join Quest
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="bg-green-100 rounded-2xl p-4">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
-                      B
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800">Reading Buddy</h3>
-                      <p className="text-sm text-gray-600">
-                        Read together online
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button size="sm" className="bg-green-500 text-white">
-                      Find Buddy
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Play Together */}
-            <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                Play Together
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white rounded-2xl p-4 shadow-sm border">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
-                      📚
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800">
-                        Reading Buddies
-                      </h3>
-                      <p className="text-sm text-gray-600">
-                        Learn with family and friends
-                      </p>
-                    </div>
-                  </div>
-                  <Button size="sm" className="w-full bg-blue-500 text-white">
-                    Join Session
-                  </Button>
-                </div>
-
-                <div className="bg-white rounded-2xl p-4 shadow-sm border">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white">
-                      🎮
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800">Coming Soon</h3>
-                      <p className="text-sm text-gray-600">
-                        More multiplayer games!
-                      </p>
-                    </div>
-                  </div>
-                  <Button size="sm" variant="outline" className="w-full">
-                    Notify Me
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Progress Stats */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm">
-              <h3 className="font-bold text-gray-800 mb-4">Your Progress</h3>
-
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Reading Speed</span>
-                    <span>125 WPM</span>
-                  </div>
-                  <Progress value={75} className="h-2" />
-                </div>
-
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Stories Read</span>
-                    <span>23/40</span>
-                  </div>
-                  <Progress value={58} className="h-2" />
-                </div>
-
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Streak</span>
-                    <span>7 days</span>
-                  </div>
-                  <Progress value={100} className="h-2" />
-                </div>
-              </div>
-            </div>
-
-            {/* Recent Badges */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm">
-              <h3 className="font-bold text-gray-800 mb-4">Recent Badges</h3>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center text-2xl mb-1">
-                    🏆
-                  </div>
-                  <div className="text-xs font-medium">First Story</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-1">
-                    📖
-                  </div>
-                  <div className="text-xs font-medium">Speed Reader</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-2xl mb-1">
-                    🔥
-                  </div>
-                  <div className="text-xs font-medium">7-Day Streak</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-2xl mb-1">
-                    ⭐
-                  </div>
-                  <div className="text-xs font-medium">Star Learner</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Class Ranking */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm">
-              <h3 className="font-bold text-gray-800 mb-4">Class Ranking</h3>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-white">
-                    1
-                  </div>
-                  <span className="text-sm font-medium">Emma</span>
-                  <span className="text-xs text-gray-500 ml-auto">
-                    2,150 XP
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-xs font-bold text-white">
-                    2
-                  </div>
-                  <span className="text-sm font-medium">You</span>
-                  <span className="text-xs text-gray-500 ml-auto">
-                    1,250 XP
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center text-xs font-bold text-white">
-                    3
-                  </div>
-                  <span className="text-sm font-medium">James</span>
-                  <span className="text-xs text-gray-500 ml-auto">
-                    1,100 XP
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Footer XP + Navigation */}
+      <footer className="bg-white border-t p-3 flex justify-around items-center text-sm">
+        <span className="flex items-center font-bold">⭐ <span className="ml-1">XP: 1250</span></span>
+        <Button 
+          variant="ghost" 
+          className="flex items-center text-xs"
+          onClick={() => navigate('/badges')}
+        >
+          🏆 <span className="ml-1">Badges</span>
+        </Button>
+        <Button 
+          variant="ghost" 
+          className="flex items-center text-xs"
+          onClick={() => navigate('/progress')}
+        >
+          📊 <span className="ml-1">Progress</span>
+        </Button>
+      </footer>
     </div>
   );
 };

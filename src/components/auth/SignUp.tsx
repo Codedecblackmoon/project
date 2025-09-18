@@ -255,7 +255,7 @@ const handleSignup = async () => {
                 value={school}
                 onChange={(e) => setSchool(e.target.value)}
                 placeholder="Your School Name"
-                className="h-12 bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-lg"
+                className="h-12 bg-white/20 border-[#111827]/30 text-[#111827] placeholder:text-[#111827]/60 rounded-sm inset-shadow-2xs inset-shadow-sm inset-shadow-indigo-500"
               />
             </div>
           )}
