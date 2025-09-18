@@ -43,7 +43,7 @@ const StudentDashboard = () => {
             onClick={() => navigate("/profile")}
           >
             👦
-          </div>
+          </div>{/* avatar */}
         </div>
       </header>
 
